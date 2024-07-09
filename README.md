@@ -13,19 +13,20 @@ A placa expõe uma api json para troca de informações e acesso de funções
 
 ## Texto
 
-A placa recebe um texto arbitrário e mostra centralizado no display
+Mostra um texto centralizado no display
 
 ## Data e hora
 
-A placa mostra a data e hora sincronizadas com um servidor NTP
+Mostra a data e hora em um formato definido pelo usuário, sendo possível sincronização com um servidor NTP
 
 # Funções futuras
 
 - [ ] Configuração automática da fonte: maximiza o texto centralizado
 - [ ] Configuração manual da fonte. O texto será "cortado" caso seja maior que as dimensões da tela
-- [ ] Detecção automática do IP da placa na conexão via browser
+- [ ] Detecção automática do IP da placa na conexão via API JSON
+- [ ] API JSON expõe página de configuração com interface gráfica
 - [ ] Mostrar uma imagem arbitrária, deve cortar e fazer a conversão no dispositivo
-- [ ] Configurar o formato de [data e hora](#-data-e-hora)
+- [x] Configurar o formato de [data e hora](#-data-e-hora)
 - [ ] Sincronização de informações sobre bateria
 - [ ] Conexão via bluetooth com android, windows, linux, via browser e (talvez) ios
 

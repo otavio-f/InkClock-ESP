@@ -23,7 +23,7 @@ Mostra a data e hora em um formato definido pelo usuário, sendo possível sincr
 
 - [ ] Configuração automática da fonte: maximiza o texto centralizado
 - [ ] Configuração manual da fonte. O texto será "cortado" caso seja maior que as dimensões da tela
-- [ ] Detecção automática do IP da placa na conexão via API JSON
+- [ ] Nome amigável (como um endereço web) na conexão via API JSON (mdns)
 - [ ] API JSON expõe página de configuração com interface gráfica
 - [ ] Mostrar uma imagem arbitrária, deve cortar e fazer a conversão no dispositivo
 - [x] Configurar o formato de [data e hora](#-data-e-hora)

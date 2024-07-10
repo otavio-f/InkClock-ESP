@@ -1,4 +1,4 @@
-#include "screen.hh"
+#include "screen.h"
 
 #define LILYGO_T5_V213
 #include <boards.h>

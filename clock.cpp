@@ -1,4 +1,4 @@
-#include "clock.hh"
+#include "clock.h"
 #include <ctime>
 #include <Arduino.h>
 

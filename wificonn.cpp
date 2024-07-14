@@ -1,5 +1,6 @@
 #include "wificonn.h"
 #include <WiFi.h>
+#include <WString.h>
 
 
 int
@@ -29,4 +30,10 @@ void
 wifi_disconnect()
 {
   WiFi.disconnect();
+}
+
+String
+get_local_ip()
+{
+  return WiFi.localIP().toString();
 }

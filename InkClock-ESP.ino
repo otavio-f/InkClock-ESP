@@ -41,7 +41,21 @@ setup()
       break;
   }
   screen_init();
-  show_text(timenow);
+
+  Serial.println("Printing center");
+  screen_clear();
+  screen_print_aligned(timenow, ORIENT_CENTER_H | ORIENT_CENTER_V);
+  delay(5000);
+  
+  Serial.println("Printing start");
+  screen_clear();
+  screen_print_aligned(timenow, ORIENT_LEFT | ORIENT_TOP);
+  delay(5000);
+  
+  Serial.println("Printing end");
+  screen_clear();
+  screen_print_aligned(timenow, ORIENT_RIGHT | ORIENT_BOTTOM);
+  delay(5000);
 }
 
 void

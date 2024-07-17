@@ -26,16 +26,39 @@ screen_init()
 }
 
 void
-show_text(String text)
-{	
+screen_print_aligned(const String text, const uint8_t align)
+{
 	int16_t x, y;
 	uint16_t w, h;
 	display.getTextBounds(text, 0, 0, &x, &y, &w, &h);
-	x = (GxEPD_HEIGHT-w)/2;
-	y = (GxEPD_WIDTH-h)/2;
 
-	display.setCursor((GxEPD_HEIGHT-w)/2, (GxEPD_WIDTH-h)/2);
-	display.fillScreen(GxEPD_WHITE);
-	display.print(text);
-	display.update();
+  if(align & ORIENT_CENTER_H)
+	  x = (GxEPD_HEIGHT-w)/2;
+  else if(align & ORIENT_RIGHT)
+    x = GxEPD_HEIGHT-w;
+  else
+    x = 0;
+
+  if(align & ORIENT_CENTER_V)
+	  y = (GxEPD_WIDTH-h)/2;
+  else if(align & ORIENT_BOTTOM)
+    y = GxEPD_WIDTH-h;
+  else
+    y = 0;
+
+  screen_print_absolute(text, x, y);
+}
+
+void
+screen_print_absolute(const String text, const uint16_t x, const uint16_t y)
+{
+  display.setCursor(x, y);
+  display.print(text);
+  display.update();
+}
+
+void
+screen_clear()
+{
+  display.fillScreen(GxEPD_WHITE);
 }

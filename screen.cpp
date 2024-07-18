@@ -33,16 +33,16 @@ screen_print_aligned(const String text, const uint8_t align)
 	display.getTextBounds(text, 0, 0, &x, &y, &w, &h);
 
   if(align & ORIENT_CENTER_H)
-	  x = (GxEPD_HEIGHT-w)/2;
+	  x = (get_width()-w)/2;
   else if(align & ORIENT_RIGHT)
-    x = GxEPD_HEIGHT-w;
+    x = get_width()-w;
   else
     x = 0;
 
   if(align & ORIENT_CENTER_V)
-	  y = (GxEPD_WIDTH-h)/2;
+	  y = (get_height()-h)/2;
   else if(align & ORIENT_BOTTOM)
-    y = GxEPD_WIDTH-h;
+    y = get_height()-h;
   else
     y = 0;
 
@@ -61,4 +61,24 @@ void
 screen_clear()
 {
   display.fillScreen(GxEPD_WHITE);
+}
+
+uint16_t
+get_width()
+{
+  const int rotation = display.getRotation();
+  if(rotation == 1 || rotation == 3)
+    return GxEPD_HEIGHT;
+  else
+    return GxEPD_WIDTH;
+}
+
+uint16_t
+get_height()
+{
+  const int rotation = display.getRotation();
+  if(rotation == 1 || rotation == 3)
+    return GxEPD_WIDTH;
+  else
+    return GxEPD_HEIGHT;
 }

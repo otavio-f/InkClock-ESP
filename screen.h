@@ -23,4 +23,10 @@ screen_print_absolute(const String, const uint16_t, const uint16_t);
 void
 screen_clear();
 
+uint16_t
+get_width();
+
+uint16_t
+get_height();
+
 #endif

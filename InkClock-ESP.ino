@@ -23,8 +23,9 @@ setup()
     Serial.printf("Error.\n");
   
   sync_time("pool.ntp.org", TZ_BR);
-  get_time(timenow, sizeof(timenow), "%d/%m/%Y\n%H:%M");
+  get_time(timenow, sizeof(timenow), "%d/%m/%Y-%H:%M");
   Serial.printf("time: %s, mins: %d, secs: %d\n", timenow, get_now_mins(), get_now_secs());
+  
   switch(initialize_server(APP_SRV_MDNS_NAME, APP_SRV_PORT))
   {
     case SRV_OK:
@@ -40,7 +41,9 @@ setup()
       Serial.println("Failed to initialize server storage");
       break;
   }
+  
   screen_init();
+  Serial.printf("Screen is %dx%d\n", get_width(), get_height());
 
   Serial.println("Printing center");
   screen_clear();

@@ -14,5 +14,26 @@ body {
 	</head>
 	<body>
 		<p>Hello! Welcome to the index page</p>
+		<form method="POST" action="show"> <!-- action is this page -->
+			<label for="text">Text to display:</label>
+			<input type="text" name="text"><br>
+
+			<p>Horizontal alignment:</p>
+			<input type="radio" name="halign" value="left" checked>
+			<label for="left">left</label><br>
+			<input type="radio" name="halign" value="center">
+			<label for="center">center</label><br>
+			<input type="radio" name="halign" value="right">
+			<label for="right">right</label><br>
+
+			<p>Vertical Alignment:</p>
+			<input type="radio" name="valign" value="top" checked>
+			<label for="top">top</label><br>
+			<input type="radio" name="valign" value="center">
+			<label for="center">center</label><br>
+			<input type="radio" name="valign" value="bottom">
+			<label for="bottom">bottom</label><br>
+			<input type="submit" value="submit">
+		</form>
 	</body>
 </html>

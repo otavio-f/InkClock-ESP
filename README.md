@@ -9,7 +9,16 @@ Controle de funções da placa [LilyGo T5 V2.3](https://www.lilygo.cc/products/t
 
 ## Conexão via rede local
 
-A placa expõe uma api json para troca de informações e acesso de funções
+A placa expõe uma api para troca de informações e acesso de funções
+
+
+### `/show (POST)`
+
+Parâmetros:
+
+* `text`: Texto a ser mostrado no display;
+* `halign`: alinhamento horizontal do texto. Pode ser `left` (esquerda), `center` (centralizado horizontalmente) ou `right` (direita);
+* `valign`: alinhamento vertical do texto. Pode ser `top` (topo), `center` (centralizado verticalmente) ou `bottom` (baixo);
 
 ## Texto
 

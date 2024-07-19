@@ -23,7 +23,7 @@ setup()
     Serial.printf("Error.\n");
   
   sync_time("pool.ntp.org", TZ_BR);
-  get_time(timenow, sizeof(timenow), "%d/%m/%Y-%H:%M");
+  get_time(timenow, sizeof(timenow), "%H:%M");
   Serial.printf("time: %s, mins: %d, secs: %d\n", timenow, get_now_mins(), get_now_secs());
   
   switch(initialize_server(APP_SRV_MDNS_NAME, APP_SRV_PORT))

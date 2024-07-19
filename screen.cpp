@@ -26,7 +26,7 @@ screen_init()
 }
 
 void
-screen_print_aligned(const String text, const uint8_t align)
+screen_print_aligned(const String text, const uint8_t align) // FIX: Cursor is on the bottom left of the char. words are drawn one character higher than they should
 {
 	int16_t x, y;
 	uint16_t w, h;
@@ -35,16 +35,16 @@ screen_print_aligned(const String text, const uint8_t align)
   if(align & ORIENT_CENTER_H)
 	  x = (get_width()-w)/2;
   else if(align & ORIENT_RIGHT)
-    x = get_width()-w;
-  else
+    x = get_width()-w-5; // Offset fixes text outside screen
+  else // left
     x = 0;
 
   if(align & ORIENT_CENTER_V)
-	  y = (get_height()-h)/2;
+	  y = get_height()/2;
   else if(align & ORIENT_BOTTOM)
-    y = get_height()-h;
-  else
-    y = 0;
+    y = get_height()-(h/2); // Offset fixes text outside screen
+  else // top
+    y = h; // Offset fixes text outside screen
 
   screen_print_absolute(text, x, y);
 }

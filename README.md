@@ -30,10 +30,11 @@ Mostra a data e hora em um formato definido pelo usuário, sendo possível sincr
 
 # Funções futuras
 
+- [ ] Possibilidade de conectar com redes wifi diferentes ou gerar uma rede caso nenhuma esteja disponível
 - [ ] Configuração automática da fonte: maximiza o texto centralizado
 - [ ] Configuração manual da fonte. O texto será "cortado" caso seja maior que as dimensões da tela
-- [ ] Nome amigável (como um endereço web) na conexão via API JSON (mdns)
-- [ ] API JSON expõe página de configuração com interface gráfica
+- [ ] Nome amigável (como um endereço web) na conexão via API (mdns)
+- [ ] API expõe página de configuração com interface gráfica
 - [ ] Mostrar uma imagem arbitrária, deve cortar e fazer a conversão no dispositivo
 - [x] Configurar o formato de [data e hora](#-data-e-hora)
 - [ ] Sincronização de informações sobre bateria

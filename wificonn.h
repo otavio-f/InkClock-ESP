@@ -7,11 +7,11 @@
 
 #include <WString.h>
 
+void
+wifi_generate(const char*, const char*);
+
 int
 wifi_connect(const char*, const char*, const int);
-
-void
-wifi_disconnect();
 
 String
 get_local_ip();

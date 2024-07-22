@@ -5,6 +5,7 @@
 #include <ESPmDNS.h>
 #include <cstring>
 #include "screen.h"
+#include "clock.h"
 
 #define FORMAT_SPIFFS_IF_FAILED false
 
@@ -126,6 +127,64 @@ handle_not_found()
 }
 
 void
+handle_get_w()
+{
+  if(!request_is_valid())
+    return;
+  if(server.method() == HTTP_POST)
+    return handle_not_found();
+  char res[8];
+  sprintf(res, "%d", get_width());
+  server.send(200, "text/plain", res);
+}
+
+void
+handle_get_h()
+{
+  if(!request_is_valid())
+    return;
+  if(server.method() == HTTP_POST)
+    return handle_not_found();
+  char res[8];
+  sprintf(res, "%d", get_height());
+  server.send(200, "text/plain", res);
+}
+
+void
+handle_show_clock()
+{
+  if(!request_is_valid())
+    return;
+  if(server.method() == HTTP_GET)
+    return handle_not_found();
+ 
+  uint8_t alignment;
+  const String halign = get_value("halign", "center");
+  if(halign == "left")
+    alignment = ORIENT_LEFT;
+  else if(halign == "right")
+    alignment = ORIENT_RIGHT;
+  else if(halign == "center")
+    alignment = ORIENT_CENTER_H;
+
+  const String valign = get_value("valign", "center");
+  if(valign == "top")
+    alignment = alignment | ORIENT_TOP;
+  else if(valign == "bottom")
+    alignment = alignment | ORIENT_BOTTOM;
+  else if(valign == "center")
+    alignment = alignment | ORIENT_CENTER_V;
+
+  const String fmt = get_value("format", "");
+  char timenow[64] = {0};
+  get_time(timenow, sizeof(timenow), fmt.c_str());
+  screen_clear();
+  screen_print_aligned(timenow, alignment);
+  server.sendHeader("Location", "/", true); // redirect
+  server.send(302, "text/plain", "");
+}
+
+void
 handle_show_text()
 {
   if(!request_is_valid())
@@ -164,5 +223,8 @@ init_routes()
   server.serveStatic("/", SPIFFS, "/index.html");
   server.serveStatic("/favicon.png", SPIFFS, "/favicon.png");
   server.on("/show", handle_show_text);
+  server.on("/clock", handle_show_clock);
+  server.on("/getwidth", handle_get_w);
+  server.on("/getheight", handle_get_h);
   server.onNotFound(handle_not_found2);
 }

@@ -15,12 +15,18 @@ void
 setup()
 {
   Serial.begin(115200);
+  Serial.print("\n\nStarting network...");
+  wifi_generate(APP_AP_SSID, APP_AP_PW);
+  Serial.printf(" done.\nNetwork name is \"%s\" and password is \"%s\"\n", APP_AP_SSID, APP_AP_PW);
+  
+  /*
   Serial.print("\n\nConnecting to wifi... ");
   int wifistatus = wifi_connect(APP_WIFI_SSID, APP_WIFI_PW, 15);
   if(wifistatus == CONN_OK)
     Serial.printf("Connected (%s).\n", get_local_ip().c_str());
   else
     Serial.printf("Error.\n");
+  */
   
   sync_time("pool.ntp.org", TZ_BR);
   get_time(timenow, sizeof(timenow), "%H:%M");
@@ -29,7 +35,7 @@ setup()
   switch(initialize_server(APP_SRV_MDNS_NAME, APP_SRV_PORT))
   {
     case SRV_OK:
-      Serial.printf("Server initialized on port %d\n", APP_SRV_PORT);
+      Serial.printf("Server initialized on %s:%d\n", get_local_ip(), APP_SRV_PORT);
       break;
     case SRV_FAIL:
       Serial.println("Failed to initialize server");
